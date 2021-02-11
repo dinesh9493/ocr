@@ -1,0 +1,18 @@
+<h1 *ngIf="showCameraError">Couldn't access the Camera</h1>
+<br/>
+<webcam
+  [height]="500"
+  [width]="500"
+  imageType="image/jpeg"
+  [trigger]="triggerObservable"
+  (imageCapture)="imageCaptured($event)"
+  *ngIf="activateTheCamera"
+  (initError)="handleInitError($event)"
+></webcam>
+<br />
+<button (click)="toggleCamera()">Toggle Camera</button>
+<button (click)="takesnapshot()">Take A Snapshot</button>
+<br />
+<div class="image-flex-container">
+  <img [src]="snap.imageAsDataUrl" *ngFor="let snap of listOfSnapshots" />
+</div>
